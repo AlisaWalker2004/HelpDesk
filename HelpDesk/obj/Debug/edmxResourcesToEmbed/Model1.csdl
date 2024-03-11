@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AndreevaHelpDeskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="idSotr" />
+    </Key>
+    <Property Name="idSotr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Post" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Departament" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Incidents" Relationship="Self.FK_Incident_Employee" FromRole="Employee" ToRole="Incident" />
+  </EntityType>
+  <EntityType Name="Incident">
+    <Key>
+      <PropertyRef Name="IdIncident" />
+    </Key>
+    <Property Name="IdIncident" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTypeOfIncident" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+    <Property Name="IdResponseGroup" Type="Int32" />
+    <Property Name="EliminationTime" Type="Int32" Nullable="false" />
+    <Property Name="IdMarkOfElimination" Type="Int32" Nullable="false" />
+    <Property Name="FinalEliminationTime" Type="DateTime" Precision="3" />
+    <Property Name="DescriptionOfTheSolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Counter" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Incident_Employee" FromRole="Incident" ToRole="Employee" />
+    <NavigationProperty Name="MarkOfElimination" Relationship="Self.FK_Incident_MarkOfElimination" FromRole="Incident" ToRole="MarkOfElimination" />
+    <NavigationProperty Name="ResponseGroup" Relationship="Self.FK_Incident_ResponseGroup" FromRole="Incident" ToRole="ResponseGroup" />
+    <NavigationProperty Name="TypeOfIncident" Relationship="Self.FK_Incident_TypeOfIncident" FromRole="Incident" ToRole="TypeOfIncident" />
+  </EntityType>
+  <EntityType Name="MarkOfElimination">
+    <Key>
+      <PropertyRef Name="IdMarkOfElimination" />
+    </Key>
+    <Property Name="IdMarkOfElimination" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TextMarkOfElimination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Incidents" Relationship="Self.FK_Incident_MarkOfElimination" FromRole="MarkOfElimination" ToRole="Incident" />
+  </EntityType>
+  <EntityType Name="ResponseGroup">
+    <Key>
+      <PropertyRef Name="IdResponseGroup" />
+    </Key>
+    <Property Name="IdResponseGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TextResponseGroup" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Incidents" Relationship="Self.FK_Incident_ResponseGroup" FromRole="ResponseGroup" ToRole="Incident" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TypeOfIncident">
+    <Key>
+      <PropertyRef Name="IdTypeOfIncident" />
+    </Key>
+    <Property Name="IdTypeOfIncident" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeOfIncident1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Incidents" Relationship="Self.FK_Incident_TypeOfIncident" FromRole="TypeOfIncident" ToRole="Incident" />
+  </EntityType>
+  <Association Name="FK_Incident_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idSotr" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incident_MarkOfElimination">
+    <End Role="MarkOfElimination" Type="Self.MarkOfElimination" Multiplicity="1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarkOfElimination">
+        <PropertyRef Name="IdMarkOfElimination" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdMarkOfElimination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incident_ResponseGroup">
+    <End Role="ResponseGroup" Type="Self.ResponseGroup" Multiplicity="0..1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponseGroup">
+        <PropertyRef Name="IdResponseGroup" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdResponseGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incident_TypeOfIncident">
+    <End Role="TypeOfIncident" Type="Self.TypeOfIncident" Multiplicity="1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfIncident">
+        <PropertyRef Name="IdTypeOfIncident" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdTypeOfIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AndreevaHelpDeskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Incidents" EntityType="Self.Incident" />
+    <EntitySet Name="MarkOfEliminations" EntityType="Self.MarkOfElimination" />
+    <EntitySet Name="ResponseGroups" EntityType="Self.ResponseGroup" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TypeOfIncidents" EntityType="Self.TypeOfIncident" />
+    <AssociationSet Name="FK_Incident_Employee" Association="Self.FK_Incident_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Incident" EntitySet="Incidents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incident_MarkOfElimination" Association="Self.FK_Incident_MarkOfElimination">
+      <End Role="MarkOfElimination" EntitySet="MarkOfEliminations" />
+      <End Role="Incident" EntitySet="Incidents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incident_ResponseGroup" Association="Self.FK_Incident_ResponseGroup">
+      <End Role="ResponseGroup" EntitySet="ResponseGroups" />
+      <End Role="Incident" EntitySet="Incidents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incident_TypeOfIncident" Association="Self.FK_Incident_TypeOfIncident">
+      <End Role="TypeOfIncident" EntitySet="TypeOfIncidents" />
+      <End Role="Incident" EntitySet="Incidents" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AndreevaHelpDeskModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AndreevaHelpDeskModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

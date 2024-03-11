@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище AndreevaHelpDeskModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="idSotr" />
+    </Key>
+    <Property Name="idSotr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Post" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Departament" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Incident">
+    <Key>
+      <PropertyRef Name="IdIncident" />
+    </Key>
+    <Property Name="IdIncident" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTypeOfIncident" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdEmployee" Type="int" Nullable="false" />
+    <Property Name="IdResponseGroup" Type="int" />
+    <Property Name="EliminationTime" Type="int" Nullable="false" />
+    <Property Name="IdMarkOfElimination" Type="int" Nullable="false" />
+    <Property Name="FinalEliminationTime" Type="datetime" />
+    <Property Name="DescriptionOfTheSolution" Type="nvarchar(max)" />
+    <Property Name="Counter" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MarkOfElimination">
+    <Key>
+      <PropertyRef Name="IdMarkOfElimination" />
+    </Key>
+    <Property Name="IdMarkOfElimination" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TextMarkOfElimination" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResponseGroup">
+    <Key>
+      <PropertyRef Name="IdResponseGroup" />
+    </Key>
+    <Property Name="IdResponseGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TextResponseGroup" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TypeOfIncident">
+    <Key>
+      <PropertyRef Name="IdTypeOfIncident" />
+    </Key>
+    <Property Name="IdTypeOfIncident" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeOfIncident" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Incident_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idSotr" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incident_MarkOfElimination">
+    <End Role="MarkOfElimination" Type="Self.MarkOfElimination" Multiplicity="1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarkOfElimination">
+        <PropertyRef Name="IdMarkOfElimination" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdMarkOfElimination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incident_ResponseGroup">
+    <End Role="ResponseGroup" Type="Self.ResponseGroup" Multiplicity="0..1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResponseGroup">
+        <PropertyRef Name="IdResponseGroup" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdResponseGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incident_TypeOfIncident">
+    <End Role="TypeOfIncident" Type="Self.TypeOfIncident" Multiplicity="1" />
+    <End Role="Incident" Type="Self.Incident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfIncident">
+        <PropertyRef Name="IdTypeOfIncident" />
+      </Principal>
+      <Dependent Role="Incident">
+        <PropertyRef Name="IdTypeOfIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище AndreevaHelpDeskModelContainer">
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Incident" EntityType="Self.Incident" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarkOfElimination" EntityType="Self.MarkOfElimination" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResponseGroup" EntityType="Self.ResponseGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfIncident" EntityType="Self.TypeOfIncident" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Incident_Employee" Association="Self.FK_Incident_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Incident" EntitySet="Incident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incident_MarkOfElimination" Association="Self.FK_Incident_MarkOfElimination">
+      <End Role="MarkOfElimination" EntitySet="MarkOfElimination" />
+      <End Role="Incident" EntitySet="Incident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incident_ResponseGroup" Association="Self.FK_Incident_ResponseGroup">
+      <End Role="ResponseGroup" EntitySet="ResponseGroup" />
+      <End Role="Incident" EntitySet="Incident" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incident_TypeOfIncident" Association="Self.FK_Incident_TypeOfIncident">
+      <End Role="TypeOfIncident" EntitySet="TypeOfIncident" />
+      <End Role="Incident" EntitySet="Incident" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

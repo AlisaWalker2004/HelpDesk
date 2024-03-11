@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AndreevaHelpDeskModelContainer" CdmEntityContainer="AndreevaHelpDeskEntities">
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="AndreevaHelpDeskModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="idSotr" ColumnName="idSotr" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="Departament" ColumnName="Departament" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Incidents">
+      <EntityTypeMapping TypeName="AndreevaHelpDeskModel.Incident">
+        <MappingFragment StoreEntitySet="Incident">
+          <ScalarProperty Name="IdIncident" ColumnName="IdIncident" />
+          <ScalarProperty Name="IdTypeOfIncident" ColumnName="IdTypeOfIncident" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+          <ScalarProperty Name="IdResponseGroup" ColumnName="IdResponseGroup" />
+          <ScalarProperty Name="EliminationTime" ColumnName="EliminationTime" />
+          <ScalarProperty Name="IdMarkOfElimination" ColumnName="IdMarkOfElimination" />
+          <ScalarProperty Name="FinalEliminationTime" ColumnName="FinalEliminationTime" />
+          <ScalarProperty Name="DescriptionOfTheSolution" ColumnName="DescriptionOfTheSolution" />
+          <ScalarProperty Name="Counter" ColumnName="Counter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarkOfEliminations">
+      <EntityTypeMapping TypeName="AndreevaHelpDeskModel.MarkOfElimination">
+        <MappingFragment StoreEntitySet="MarkOfElimination">
+          <ScalarProperty Name="IdMarkOfElimination" ColumnName="IdMarkOfElimination" />
+          <ScalarProperty Name="TextMarkOfElimination" ColumnName="TextMarkOfElimination" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResponseGroups">
+      <EntityTypeMapping TypeName="AndreevaHelpDeskModel.ResponseGroup">
+        <MappingFragment StoreEntitySet="ResponseGroup">
+          <ScalarProperty Name="IdResponseGroup" ColumnName="IdResponseGroup" />
+          <ScalarProperty Name="TextResponseGroup" ColumnName="TextResponseGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AndreevaHelpDeskModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfIncidents">
+      <EntityTypeMapping TypeName="AndreevaHelpDeskModel.TypeOfIncident">
+        <MappingFragment StoreEntitySet="TypeOfIncident">
+          <ScalarProperty Name="IdTypeOfIncident" ColumnName="IdTypeOfIncident" />
+          <ScalarProperty Name="TypeOfIncident1" ColumnName="TypeOfIncident" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище AndreevaHelpDeskModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище AndreevaHelpDeskModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище AndreevaHelpDeskModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище AndreevaHelpDeskModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AndreevaHelpDeskModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище AndreevaHelpDeskModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AndreevaHelpDeskModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище AndreevaHelpDeskModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище AndreevaHelpDeskModel.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
