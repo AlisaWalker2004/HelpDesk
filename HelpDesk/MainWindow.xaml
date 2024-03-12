@@ -7,11 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="7*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.ColumnSpan="2" Name="spAutho">
+        <StackPanel  Name="spAutho">
             <TextBlock Name="tbId" Visibility="Hidden"/>
             <TextBlock Text="Введите логин:" />
             <TextBox Name="tbLogin"/>
@@ -20,6 +16,5 @@
             <Button Name="btnEnter" Content="Войти" Click="btnEnter_Click"/>
         </StackPanel>
         <Frame Name="MainFrame"/>
-
     </Grid>
 </Window>

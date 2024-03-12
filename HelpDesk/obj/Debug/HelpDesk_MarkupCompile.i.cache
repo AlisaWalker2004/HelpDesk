@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Учебное 4 курс\Кякшта\Практика\HelpDesk\HelpDesk\obj\Debug\
+C:\Users\FIFA2\source\repos\XaKer547\HelpDesk\HelpDesk\obj\Debug\
 HelpDesk
 none
 false
 DEBUG;TRACE
-D:\Учебное 4 курс\Кякшта\Практика\HelpDesk\HelpDesk\App.xaml
-31907298521
-2-1957146511
-19-830305336
-18-1014244887
-MainWindow.xaml;MyFrame\PageAdmin.xaml;MyFrame\PageUser.xaml;
+C:\Users\FIFA2\source\repos\XaKer547\HelpDesk\HelpDesk\App.xaml
+5-981765747
 
-False
+18580844830
+181268565621
+CloseIncidentWindow.xaml;CreateIncidentWindow.xaml;MainWindow.xaml;MyFrame\PageAdmin.xaml;MyFrame\PageUser.xaml;
+
+True
 
