@@ -24,3 +24,31 @@ E:\Учебное 4 курс\Кякшта\Практика\HelpDesk\HelpDesk\obj
 E:\Учебное 4 курс\Кякшта\Практика\HelpDesk\HelpDesk\obj\Debug\HelpDesk.csproj.CopyComplete
 E:\Учебное 4 курс\Кякшта\Практика\HelpDesk\HelpDesk\obj\Debug\HelpDesk.exe
 E:\Учебное 4 курс\Кякшта\Практика\HelpDesk\HelpDesk\obj\Debug\HelpDesk.pdb
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\HelpDesk.exe.config
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\HelpDesk.exe
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\HelpDesk.pdb
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\EntityFramework.dll
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\EntityFramework.xml
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.csproj.AssemblyReference.cache
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\MainWindow.g.cs
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\MyFrame\PageAdmin.g.cs
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\MyFrame\PageUser.g.cs
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\App.g.cs
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk_MarkupCompile.cache
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk_MarkupCompile.lref
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\MainWindow.baml
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\MyFrame\PageAdmin.baml
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\MyFrame\PageUser.baml
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.g.resources
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.Properties.Resources.resources
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.csproj.GenerateResource.cache
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.csproj.CoreCompileInputs.cache
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.csproj.CopyComplete
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.exe
+C:\Users\FIFA2\Source\Repos\HelpDesk\HelpDesk\obj\Debug\HelpDesk.pdb
+C:\Users\FIFA2\source\repos\HelpDesk\HelpDesk\obj\Debug\CreateIncidentWindow.g.cs
+C:\Users\FIFA2\source\repos\HelpDesk\HelpDesk\obj\Debug\CreateIncidentWindow.baml

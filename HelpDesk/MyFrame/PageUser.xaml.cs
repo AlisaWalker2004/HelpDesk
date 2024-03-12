@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HelpDesk.Data;
+using HelpDesk.Data.Entities;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HelpDesk.MyFrame
 {
@@ -20,21 +11,44 @@ namespace HelpDesk.MyFrame
     /// </summary>
     public partial class PageUser : Page
     {
-        AndreevaHelpDeskEntities entities;
-        public PageUser()
+        private readonly int _userId;
+        private readonly HelpDeskDbContext _context;
+        public PageUser(int userId)
         {
             InitializeComponent();
-            cbTypeOfIncident.ItemsSource = AndreevaHelpDeskEntities.GetContext().TypeOfIncidents.ToList();
+            _userId = userId;
+
+            _context = new HelpDeskDbContext();
+
+            cbTypeOfIncident.ItemsSource = _context.IncidentTypes.ToList();
+
+            incidentsLb.ItemsSource = _context.Incidents.ToList();
         }
 
         private void btnAddIncident_Click(object sender, RoutedEventArgs e)
         {
-            var idTypeOfIncident = entities.TypeOfIncidents.Where(x=>x.TypeOfIncident1 == cbTypeOfIncident.Text);
-            //var a = new List<Incident>()
-            //{
-            //    new Incident() { Description = ComboVaccinations.Text + " "+ txtProblem.Text, id_Docors = idDoctorRandom.Next(1, kolDoctor), id_TypeOfService = idTypeOfService,
-            //    id_PassportOfTheAnimal = idAnimalCombo, Date = dpDateZapis.SelectedDate.Value}
-            // };
+            var window = new CreateIncidentWindow(_userId, cbTypeOfIncident.SelectedIndex + 1);
+
+            window.ShowDialog();
+        }
+
+        private void tbDescription_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshIncidents();
+        }
+
+        private void cbTypeOfIncident_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshIncidents();
+        }
+
+        private void RefreshIncidents()
+        {
+            var typeId = ((IncidentType)cbTypeOfIncident.SelectedItem).Id;
+            var searchText = tbDescription.Text;
+
+            incidentsLb.ItemsSource = _context.Incidents.Where(i => i.Type.Id == typeId && i.Title.Contains(searchText))
+                .ToList();
         }
     }
 }

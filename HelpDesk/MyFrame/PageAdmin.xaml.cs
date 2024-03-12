@@ -1,28 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HelpDesk.Data;
+using HelpDesk.Data.Entities;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HelpDesk.MyFrame
 {
     /// <summary>
-    /// Логика взаимодействия для PageAdmin.xaml
+    /// Логика взаимодействия для PageUser.xaml
     /// </summary>
     public partial class PageAdmin : Page
     {
+        private readonly HelpDeskDbContext _context;
         public PageAdmin()
         {
             InitializeComponent();
+            _context = new HelpDeskDbContext();
+
+            cbTypeOfIncident.ItemsSource = _context.IncidentTypes.ToList();
+
+            incidentsLb.ItemsSource = _context.Incidents.ToList();
+        }
+
+        private void tbDescription_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshIncidents();
+        }
+
+        private void cbTypeOfIncident_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshIncidents();
+        }
+
+        private void RefreshIncidents()
+        {
+            var typeId = ((IncidentType)cbTypeOfIncident.SelectedItem).Id;
+            var searchText = tbDescription.Text;
+
+            incidentsLb.ItemsSource = _context.Incidents.Where(i => i.Type.Id == typeId && i.Title.Contains(searchText))
+                .ToList();
+        }
+
+        private void btnCloseIncident_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var incidentId = ((Incident)(incidentsLb.SelectedItem)).Id;
+
+            var window = new CloseIncidentWindow(incidentId);
+
+            window.ShowDialog();
         }
     }
 }

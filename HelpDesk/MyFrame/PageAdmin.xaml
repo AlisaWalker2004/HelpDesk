@@ -3,11 +3,31 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HelpDesk.MyFrame"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageAdmin">
-    <Grid>
-        
-    </Grid>
+      Title="Создание обращения">
+    <StackPanel>
+        <DockPanel>
+            <StackPanel MinWidth="580">
+                <TextBlock Text="Введите описание инцидента:"/>
+                <TextBox Name="tbDescription" TextChanged="tbDescription_TextChanged"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Выберите тип инцидента:"/>
+                <ComboBox Name="cbTypeOfIncident" SelectedItem="{Binding TypeOfIncidents}"
+                          DisplayMemberPath="Name" SelectionChanged="cbTypeOfIncident_SelectionChanged"/>
+            </StackPanel>
+        </DockPanel>
+        <ListBox Name="incidentsLb">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Number}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Name="btnCloseIncident" Content="Закрыть" Click="btnCloseIncident_Click"/>
+    </StackPanel>
 </Page>
